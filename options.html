@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>MHTML Page Saver - 設定</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+      min-width: 400px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #4285f4;
+      padding-bottom: 10px;
+    }
+    .option-group {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .option-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .option-group select,
+    .option-group input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .option-group input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    .option-group .description {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      font-weight: normal !important;
+    }
+    button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    #status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    #status.success {
+      display: block;
+      background-color: #d4edda;
+      color: #155724;
+    }
+    #status.error {
+      display: block;
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚙️ MHTML Page Saver 設定</h1>
+
+  <div class="option-group">
+    <label for="waitTime">保存前の待機時間（ミリ秒）</label>
+    <input type="number" id="waitTime" min="0" max="10000" step="100" value="1000">
+    <p class="description">
+      ページの読み込み完了を待つ時間です。SPAや遅延ロードがあるサイトでは長めに設定してください。
+    </p>
+  </div>
+
+  <div class="option-group">
+    <label for="filenameFormat">ファイル名の形式</label>
+    <select id="filenameFormat">
+      <option value="title_date_hostname">ホスト名__タイトル__日時.mhtml</option>
+      <option value="date_title">日時__タイトル.mhtml</option>
+      <option value="hostname_title">ホスト名__タイトル.mhtml</option>
+      <option value="title_only">タイトル.mhtml</option>
+    </select>
+    <p class="description">
+      保存するファイルの命名規則を選択してください。
+    </p>
+  </div>
+
+  <div class="option-group">
+    <label class="checkbox-label">
+      <input type="checkbox" id="showNotification" checked>
+      保存完了時に通知を表示する
+    </label>
+  </div>
+
+  <button id="save">設定を保存</button>
+  <div id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>アイコン生成ツール</title>
+</head>
+<body>
+  <h1>アイコン生成</h1>
+  <p>以下のキャンバスを右クリックして「名前を付けて画像を保存」してください。</p>
+  
+  <h3>icon16.png</h3>
+  <canvas id="icon16" width="16" height="16"></canvas>
+  
+  <h3>icon48.png</h3>
+  <canvas id="icon48" width="48" height="48"></canvas>
+  
+  <h3>icon128.png</h3>
+  <canvas id="icon128" width="128" height="128"></canvas>
+
+  <script>
+    function drawIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      const scale = size / 128;
+
+      // 背景の四角
+      ctx.fillStyle = '#4285f4';
+      ctx.beginPath();
+      ctx.roundRect(16 * scale, 8 * scale, 96 * scale, 112 * scale, 8 * scale);
+      ctx.fill();
+
+      // テキストライン
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 6 * scale;
+      ctx.lineCap = 'round';
+      
+      ctx.beginPath();
+      ctx.moveTo(36 * scale, 36 * scale);
+      ctx.lineTo(92 * scale, 36 * scale);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(36 * scale, 56 * scale);
+      ctx.lineTo(92 * scale, 56 * scale);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(36 * scale, 76 * scale);
+      ctx.lineTo(76 * scale, 76 * scale);
+      ctx.stroke();
+
+      // ダウンロードボタン（白丸）
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(100 * scale, 100 * scale, 22 * scale, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 矢印
+      ctx.strokeStyle = '#4285f4';
+      ctx.lineWidth = 5 * scale;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      ctx.beginPath();
+      ctx.moveTo(100 * scale, 88 * scale);
+      ctx.lineTo(100 * scale, 112 * scale);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(91 * scale, 103 * scale);
+      ctx.lineTo(100 * scale, 112 * scale);
+      ctx.lineTo(109 * scale, 103 * scale);
+      ctx.stroke();
+    }
+
+    drawIcon('icon16', 16);
+    drawIcon('icon48', 48);
+    drawIcon('icon128', 128);
+  </script>
+</body>
+</html>
